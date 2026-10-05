@@ -13,7 +13,7 @@ spec:
         app: store
     spec:
       affinity:
-        podAntiAffinity:
+        podAntiAffinity: #bases on this label app: store it will see this on same node so it will place pod on new node
           requiredDuringSchedulingIgnoredDuringExecution:
           - labelSelector:
               matchExpressions:
@@ -41,7 +41,7 @@ spec:
         app: web-store
     spec:
       affinity:
-        podAntiAffinity:
+        podAntiAffinity:  #webstore for rejection
           requiredDuringSchedulingIgnoredDuringExecution:
           - labelSelector:
               matchExpressions:
@@ -50,7 +50,7 @@ spec:
                 values:
                 - web-store
             topologyKey: "kubernetes.io/hostname"
-        podAffinity:
+        podAffinity: #cache is selecting 
           requiredDuringSchedulingIgnoredDuringExecution:
           - labelSelector:
               matchExpressions:
