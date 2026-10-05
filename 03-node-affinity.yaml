@@ -15,15 +15,22 @@ spec:
             - us-east-1b
             - us-east-1c
       
-      # # 2. Soft Rule: Prefer SSD nodes, but bypass if unavailable
-      # preferredDuringSchedulingIgnoredDuringExecution:
-      # - weight: 80
-      #   preference:
-      #     matchExpressions:
-      #     - key: disktype
-      #       operator: In
-      #       values:
-      #       - ssd
+      # 2. Soft Rule: Prefer based on weight and with 1b&1c zones both satisfies,based on that weight it will select
+      preferredDuringSchedulingIgnoredDuringExecution:
+      - weight: 50
+        preference:
+          matchExpressions:
+          - key:  topology.kubernetes.io/zone
+            operator: In
+            values:
+            - us-east-1b
+      - weight: 100
+        preference:
+          matchExpressions:
+          - key:  topology.kubernetes.io/zone
+            operator: In
+            values:
+            - us-east-1c
   containers:
   - name: nginx
     image: nginx:latest
