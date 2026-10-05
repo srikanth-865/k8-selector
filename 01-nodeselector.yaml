@@ -9,4 +9,4 @@ spec:
   - name: nginx
     image: nginx
  nodeSelector: #which is used to select our creeated label with this project: roboshop1 to the node
-    project: roboshop1
+    project: roboshop
