@@ -13,7 +13,7 @@ spec:
             operator: In
             values:
             - us-east-1a
-            - us-east-1b
+            - us-east-1d
       
       # # 2. Soft Rule: Prefer SSD nodes, but bypass if unavailable
       # preferredDuringSchedulingIgnoredDuringExecution:
