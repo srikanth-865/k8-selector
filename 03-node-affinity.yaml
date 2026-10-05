@@ -17,14 +17,14 @@ spec:
       
       # 2. Soft Rule: Prefer based on weight and with 1b&1c zones both satisfies,based on that weight it will select
       preferredDuringSchedulingIgnoredDuringExecution:
-      - weight: 50
+      - weight: 100
         preference:
           matchExpressions:
           - key:  topology.kubernetes.io/zone
             operator: In
             values:
             - us-east-1b
-      - weight: 100
+      - weight: 50
         preference:
           matchExpressions:
           - key:  topology.kubernetes.io/zone
