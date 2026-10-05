@@ -13,8 +13,8 @@ spec:
   tolerations:
   - key: "hardware"
     operator: "Equal"
-    value: "gpu"
-    effect: "GPU"
+    value: "GPU"
+    effect: "NoExecute"
   nodeSelector:
     project: roboshop
   
