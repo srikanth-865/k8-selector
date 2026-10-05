@@ -29,7 +29,8 @@ spec:
             values:
             - database #pod 3  Label-Value
         # Evaluates rules based on the node's hostname
-        topologyKey: topology.kubernetes.io/hostname # border is AZ
+        topologyKey: topology.kubernetes.io/hostname #by givng hostname it will create pod on another node/instance
+        #Ensures pods land on any node that belongs to the same Availability Zone (an AWS data center region boundary) where the matching pod is running
   containers:
   - name: nginx
     image: nginx

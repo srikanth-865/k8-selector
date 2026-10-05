@@ -27,7 +27,7 @@ spec:
             operator: In
             values:
             - database #pod 1  Label-Value
-        topologyKey: topology.kubernetes.io/zone # border is AZ
+        topologyKey: topology.kubernetes.io/zone # border is AZ (Ensures pods land on the exact same node)
   containers:
   - name: nginx
     image: nginx
