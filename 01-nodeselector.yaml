@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: Pod
 metadata:
- name: node-selector
+ name: nginx
  labels:
   project: roboshop
 spec:
  containers:
   - name: nginx
     image: nginx
- nodeSelector:
+ nodeSelector: #which is used to select our creeated label with this project: roboshop1 to the node
     project: roboshop1
