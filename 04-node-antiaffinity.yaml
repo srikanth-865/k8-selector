@@ -1,0 +1,35 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: with-node-affinity
+spec:
+  affinity:
+    nodeAffinity:
+      # 1. Hard Rule: Must be in US-East-1 
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: topology.kubernetes.io/zone
+            operator: In
+            values:
+            - us-east-1c
+            - us-east-1b
+      # 2. Soft Rule: Prefer based on weight and with 1b&1c zones both satisfies,based on that weight it will select one
+      preferredDuringSchedulingIgnoredDuringExecution:
+      - weight: 50
+        preference:
+          matchExpressions:
+          - key:  topology.kubernetes.io/zone
+            operator: In
+            values:
+            - us-east-1c
+      - weight: 100
+        preference:
+          matchExpressions:
+          - key:  topology.kubernetes.io/zone
+            operator: NotIn
+            values:
+            - us-east-1b
+  containers:
+  - name: nginx
+    image: nginx:latest
