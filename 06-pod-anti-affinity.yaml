@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-3
+  labels:
+    project: roboshop
+    tier: database
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-4
+  labels:
+    project: roboshop
+    tier: backend
+spec:
+  affinity:
+    podAntiAffinity:
+    # Hard requirement: Pods MUST NOT be scheduled on the same node
+      requiredDuringSchedulingIgnoredDuringExecution:
+      - labelSelector:
+          matchExpressions:
+          - key: tier  #pod 3  Label-key
+            operator: In
+            values:
+            - database #pod 3  Label-Value
+        # Evaluates rules based on the node's hostname
+        topologyKey: topology.kubernetes.io/hostname # border is AZ
+  containers:
+  - name: nginx
+    image: nginx
+    
