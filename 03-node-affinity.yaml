@@ -12,8 +12,8 @@ spec:
           - key: topology.kubernetes.io/zone
             operator: In
             values:
-            - us-east-1a
-            - us-east-1d
+            - us-east-1b
+            - us-east-1c
       
       # # 2. Soft Rule: Prefer SSD nodes, but bypass if unavailable
       # preferredDuringSchedulingIgnoredDuringExecution:
